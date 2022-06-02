@@ -1,0 +1,613 @@
+/**
+ * Description of Cliente
+ *
+ * @author 2D Analises
+ */
+
+/*-- Slider --*/
+body {
+    margin: 0;
+}
+
+/* Browser Resets
+*********************************/
+.flex-container a:active,
+.flexslider a:active,
+.flex-container a:focus,
+.flexslider a:focus  {outline: none;}
+.slides,
+.flex-control-nav,
+.flex-direction-nav {margin: 0; padding: 0; list-style: none;}
+
+/* Icon Fonts
+*********************************/
+/* Font-face Icons */
+@font-face {
+    font-family: 'flexslider-icon';
+    src:url('fonts/flexslider-icon.eot');
+    src:url('fonts/flexslider-icon.eot?#iefix') format('embedded-opentype'),
+        url('fonts/flexslider-icon.woff') format('woff'),
+        url('fonts/flexslider-icon.ttf') format('truetype'),
+        url('fonts/flexslider-icon.svg#flexslider-icon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* FlexSlider Necessary Styles
+*********************************/
+.flexslider { overflow: hidden; margin: 0; padding: 0;}
+.flexslider .slides > li {display: none; -webkit-backface-visibility: hidden;} /* Hide the slides before the JS is loaded. Avoids image jumping */
+.flexslider .slides img {width: 100%; display: block;}
+.flex-pauseplay span {text-transform: capitalize;}
+
+/* Clearfix for the .slides element */
+.slides:after {content: "\0020"; display: block; clear: both; visibility: hidden; line-height: 0; height: 0;}
+html[xmlns] .slides {display: block;}
+* html .slides {height: 1%;}
+
+/* No JavaScript Fallback */
+/* If you are not using another script, such as Modernizr, make sure you
+ * include js that eliminates this class on page load */
+.no-js .slides > li:first-child {display: block;}
+
+/* FlexSlider Default Theme
+*********************************/
+.flexslider { position: relative; zoom: 1; max-height:  600px; }
+.flex-viewport { max-height: 2000px; -webkit-transition: all 1s ease; -moz-transition: all 1s ease; -o-transition: all 1s ease; transition: all 1s ease; }
+.loading .flex-viewport { max-height: 300px; }
+.flexslider .slides { zoom: 1; }
+.carousel li { margin-right: 5px; }
+
+/* Direction Nav */
+.flex-direction-nav {*height: 0;}
+.flex-direction-nav a  { text-align: center; display: block; border: 1px solid #fff; width: 40px; height: 40px; line-height: 40px; color: #fff; margin: -20px 0 0; position: absolute; top: 50%; z-index: 10; overflow: hidden; opacity: 0; cursor: pointer; -webkit-transition: all .3s ease; -moz-transition: all .3s ease; transition: all .3s ease; }
+.flex-direction-nav .flex-prev { left: -50px; }
+.flex-direction-nav .flex-next { right: -50px; }
+.flexslider:hover .flex-prev { opacity: 1; left: 50px; }
+.flexslider:hover .flex-next { opacity: 1; right: 50px; }
+.flexslider:hover .flex-next:hover, .flexslider:hover .flex-prev:hover { opacity: 1; }
+.flex-direction-nav .flex-disabled { opacity: 0!important; filter:alpha(opacity=0); cursor: default; }
+.flex-direction-nav a:before  {font-family: 'FontAwesome'; font-size: 32px; display: inline-block; content: '\f104'; }
+.flex-direction-nav a.flex-next:before  { content: '\f105'; }
+
+/* Pause/Play */
+.flex-pauseplay a { display: block; width: 20px; height: 20px; position: absolute; bottom: 5px; left: 10px; opacity: 0.8; z-index: 10; overflow: hidden; cursor: pointer; color: #000; }
+.flex-pauseplay a:before  { font-size: 20px; display: inline-block; content: '\f004'; }
+.flex-pauseplay a:hover  { opacity: 1; }
+.flex-pauseplay a.flex-play:before { content: '\f003'; }
+
+/* Control Nav */
+.flex-control-nav {width: 100%; position: absolute; bottom: -40px; text-align: center;}
+.flex-control-nav li {margin: 0 6px; display: inline-block; zoom: 1; *display: inline;}
+.flex-control-paging li a {width: 11px; height: 11px; display: block; background: #666; background: rgba(0,0,0,0.5); cursor: pointer; text-indent: -9999px; -webkit-border-radius: 20px; -moz-border-radius: 20px; -o-border-radius: 20px; border-radius: 20px; -webkit-box-shadow: inset 0 0 3px rgba(0,0,0,0.3); -moz-box-shadow: inset 0 0 3px rgba(0,0,0,0.3); -o-box-shadow: inset 0 0 3px rgba(0,0,0,0.3); box-shadow: inset 0 0 3px rgba(0,0,0,0.3); }
+.flex-control-paging li a:hover { background: #333; background: rgba(0,0,0,0.7); }
+.flex-control-paging li a.flex-active { background: #000; background: rgba(0,0,0,0.9); cursor: default; }
+
+.flex-control-thumbs {margin: 5px 0 0; position: static; overflow: hidden;}
+.flex-control-thumbs li {width: 25%; float: left; margin: 0;}
+.flex-control-thumbs img {width: 100%; display: block; opacity: .7; cursor: pointer;}
+.flex-control-thumbs img:hover {opacity: 1;}
+.flex-control-thumbs .flex-active {opacity: 1; cursor: default;}
+
+@media screen and (max-width: 860px) {
+    .flex-direction-nav .flex-prev { opacity: 1; left: -40px;}
+    .flex-direction-nav .flex-next { opacity: 1; right: -40px;}
+}
+
+/* DESKTOP */
+@media screen and (min-width: 961px){
+    .log_inicial{
+        background: url(./images/show-inicio.jpg)no-repeat black;    
+        background-size: 100%;
+    }
+
+    .form_alinha span p{       
+        width: 100%;    
+        color: #ffffff;    
+        text-align: right;    
+        font-size: 4%;      
+    }
+
+    .post-client{
+        max-width:none;
+    }
+    .post-client img{
+        max-width:100%;
+    }
+
+    .absoluto{
+        margin-left: 1%;
+        font-size: 130%;
+        color: white;
+        position: absolute;
+        font-family: 'Open Sans', Agency FB;
+    }
+
+    .slider-caption {
+        text-align: center;
+        position: absolute;
+        width: 100%;
+        margin-top: 35%;
+        color: #fff;
+        font-family: 'Open Sans', sans-serif;
+    }
+
+    .slider-caption a {
+        text-align: center;  
+        width: 100%;
+        margin-top: 160px;
+        color: #fff;
+        font-family: 'Open Sans', sans-serif;
+    }
+
+    .slider-caption a:hover {
+        color: #7104f9;
+    }
+
+    /*-- End Slider --*/  
+
+    .form_alinha_3 {
+        margin-top: -7%;
+    }
+
+    .form_alinha_4 iframe{ 
+        padding: 0;
+        
+    }
+
+    .form_alinha_2 {
+        margin-top: -5%;       
+    }
+
+    .form_alinha_2 section {
+        width: 45%;
+        margin-top: 1%;
+        line-height: normal;
+        display: block;
+        font-size: 55%;
+        color: #888;
+    }
+
+    .form_alinha_2 select {
+        padding: 0.12em 0.8em;        
+    }
+
+    .form_alinha_3 table {       
+        margin-top: 11%;       
+    }
+
+    .form_alinha p{
+        width: 75%;
+        margin-top: 6%; 
+        margin-left: -3%;
+        color: #666;      
+        font-size: 30px;
+        font-weight: 700;       
+    }
+
+    .form_alinha span p{
+        margin-top: 12%;
+        width: 100%;    
+        color: #ffffff;    
+        text-align: right;    
+        font-size: 75%;      
+    }
+
+    /*LARGURA DOS CAMPOS DO FORMULARIO*/
+    .form_alinha input{    
+        height: 35px;
+    }
+
+    /*   MODIFICA O BUTTON DE UPLOAD DE SLIDE DE IMAGENS    */
+    div#sobrepor {
+        margin-top: -7.8em;        
+        position: absolute;
+        opacity: 0;
+    }
+
+    div#sobrepor input {
+        width: 7em;
+        height: 7.3em;
+    }
+
+    input#foto {
+        float: left;        
+        font-size: 0.8em;
+        color: #7104f9;        
+    }
+
+    #close {  
+        margin-top: -5%;
+        margin-right: 1.5%;
+        position: relative;
+        float: right;
+    }
+
+    /* CONFIGURAÇÃO DA IMAGEM DO USUARIO */
+    figure.user {        
+        position: relative;
+        float: left;        
+    }
+
+    figure.user img {  
+        box-shadow: 1px 1px 5px #333;        
+    }   
+
+    figure.user figcaption {
+        opacity: 0;
+        position: absolute;
+        top: 73%; 
+        background-color: rgba(0,0,0,.4);
+        width: 100%; 
+        height: 1.6em;
+        transition: opacity 1s;        
+    }
+
+    figure.user:hover figcaption {
+        opacity: 1;        
+    }
+
+    figure.user figcaption h3 {
+        color: white;        
+        font-family: 'Source Sans Pro', sans-serif;
+        font-size: 0.89em;        
+    }
+}
+
+/* TABLET */
+@media screen and (min-width: 421px) and (max-width: 960px){
+    .log_inicial{
+        background: url(./images/show-tablet.jpg) no-repeat black;    
+        background-size: 100%;       
+    }
+
+    body, input {
+        width: 100%;
+    }
+
+    .form_alinha span p{       
+        width: 100%;    
+        color: #ffffff;    
+        text-align: right;    
+        font-size: 18%;      
+    }
+
+    .post-client{
+        max-width:700px;
+    }
+
+    .post-client img{
+        max-width:100%;
+    }
+
+    .absoluto{
+        margin-left: 1%;
+        font-size: 120%;
+        color: white;
+        position: absolute;
+        font-family: 'Open Sans', Agency FB;
+    }
+
+    .slider-caption {
+        text-align: center;
+        position: absolute;
+        width: 100%;
+        margin-top: 25%;
+        color: #fff;
+        font-family: 'Open Sans', sans-serif;
+    }
+
+    .slider-caption a {
+        text-align: center;  
+        width: 100%;       
+        color: #fff;
+        font-size: 65%;
+        font-family: 'Open Sans', sans-serif;
+    }
+
+    .slider-caption a:hover {
+        color: #7104f9;
+    }
+
+    .slider-caption p {
+        text-align: center;  
+        width: 100%;       
+        color: #fff;
+        font-size: 65%;
+        font-family: 'Open Sans', sans-serif;
+    }
+
+    .one{
+        background-image: url(images/banner.jpg);
+        height: 100%;
+    }
+    /*-- End Slider --*/   
+
+
+    .form_alinha_2 section {
+        width: 75%;
+        margin-top: 1%;
+        line-height: normal;
+        display: block;
+        font-size: 70%;
+        color: #888;
+    }
+
+    .form_alinha_3 table tr td{
+        width: 85%;
+    }
+
+    .form_alinha form{       
+        margin-top: -4%;       
+    }
+
+    .form_alinha p{
+        width: 75%; 
+        margin-top: 5%;
+        margin-left: -2%;
+        color: #666;      
+        font-size: 30px;
+        font-weight: 700;       
+    }
+
+    .form_alinha span p{       
+        width: 100%;    
+        color: #ffffff;    
+        text-align: right;    
+        font-size: 70%;      
+    }
+
+    /*   MODIFICA O BUTTON DE UPLOAD DE SLIDE DE IMAGENS    */
+    div#sobrepor {
+        position: absolute;
+        opacity: 0;
+    }
+
+    div#sobrepor input {
+        width: 7em;
+        height: 7.3em;
+    }
+
+    input#foto {
+        float: left;        
+        font-size: 0.8em;
+        color: #7104f9;        
+    }
+
+    #close {  
+        margin-top: -4%;
+        margin-right: 1.5%;
+        position: relative;
+        float: right;
+    }
+
+    /* CONFIGURAÇÃO DA IMAGEM DO USUARIO */
+    figure.user {
+        position: relative;
+        float: left;
+    }
+
+    figure.user img { 
+        float: left;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        box-shadow: 1px 1px 5px #333;
+    }   
+
+    figure.user figcaption {
+        opacity: 0;
+        position: absolute;
+        top: 82%; 
+        background-color: rgba(0,0,0,.4);
+        width: 100%; 
+        height: 1.6em;
+        transition: opacity 1s;
+    }
+
+    figure.user:hover figcaption {
+        opacity: 1;
+    }
+
+    figure.user figcaption h3 {
+        color: white;        
+        font-family: 'Source Sans Pro', sans-serif;
+        font-size: 0.89em;
+    }
+}
+
+/* MOBILE */
+@media screen and (max-width: 420px){
+
+    .log_inicial{     
+        background: url(./images/show-mobile.jpg) no-repeat black;   
+        background-size: 100%;
+    }
+
+    .sub-menu{
+        max-width:700px;
+    }
+
+    .sub-menu ul{
+        font-size: 70%;
+        max-width:100%;
+    }
+
+    .post-client{
+        max-width:700px;
+    }
+    .post-client img{
+        max-width:100%;
+    }
+
+    .absoluto{
+        margin-left: 2%;
+        font-size: 85%;
+        color: white;
+        position: absolute;
+        font-family: 'Open Sans', Agency FB;
+    }
+
+    .slider-caption {
+        text-align: center;
+        position: absolute;
+        width: 100%;
+        margin-top: 25%;
+        color: #fff;
+        font-family: 'Open Sans', sans-serif;
+    }
+
+    .slider-caption a {
+        text-align: center;  
+        width: 100%;       
+        color: #fff;
+        font-size: 65%;
+        font-family: 'Open Sans', sans-serif;
+    }
+
+    .slider-caption a:hover {
+        color: #7104f9;
+    }
+
+    .slider-caption p {
+        text-align: center;  
+        width: 100%;       
+        color: #fff;
+        font-size: 65%;
+        line-height: 140%;
+        font-family: 'Open Sans', sans-serif;
+    }
+
+    .one{
+        background-image: url(images/banner.jpg);
+        height: 100%;
+    }
+    /*-- End Slider --*/  
+
+    .form_alinha_3{
+        margin-top: 30%;
+    }
+
+    .form_alinha_3 button{       
+        font-size: 63%;
+    }
+
+    .form_alinha_3 section{
+        font-size: 60%;
+    }
+
+    .form_alinha_2 {
+        margin-top: 5%;
+    }
+
+    .form_alinha_2 button{       
+        font-size: 70%;
+    }
+
+    .form_alinha_2 section{
+        font-size: 60%;
+    }
+
+    .form_alinha p{
+        width: 100%;         
+        margin-left: -2%;
+        color: #666;      
+        font-size: 25px;
+        font-weight: 700;       
+    }
+
+    .form_alinha span p{       
+        width: 100%;    
+        color: #ffffff;    
+        text-align: right;    
+        font-size: 48%;      
+    }
+
+    /*   MODIFICA O BUTTON DE UPLOAD DE SLIDE DE IMAGENS    */
+    div#sobrepor {             
+        position: absolute;
+        opacity: 0;
+    }
+
+    div#sobrepor input {
+        width: 7em;
+        height: 7.3em;
+    }
+
+    input#foto {
+        float: left;        
+        font-size: 0.8em;
+        color: #7104f9;        
+    }
+
+    #close {  
+        margin-top: -9%;
+        margin-right: 1.5%;
+        position: relative;
+        float: right;
+    }
+
+    /* CONFIGURAÇÃO DA IMAGEM DO USUARIO */
+    figure.user {
+        position: relative;
+        float: left;
+    }
+
+    figure.user img { 
+        float: left;
+        padding: 0;
+        width: 80%;
+        height: 80%;
+        box-shadow: 1px 1px 5px #333;
+    }   
+
+    figure.user figcaption {
+        opacity: 0;
+        position: absolute;
+        top: 78%; 
+        background-color: rgba(0,0,0,.4);
+        width: 80.5%; 
+        height: 1.6em;
+        transition: opacity 1s;
+    }
+
+    figure.user:hover figcaption {
+        opacity: 1;
+    }
+
+    figure.user figcaption h3 {
+        color: white;        
+        font-family: 'Source Sans Pro', sans-serif;
+        font-size: 0.89em;
+    }
+}
+
+.form_alinha table tr td{      
+    padding: 10px;
+}
+
+#top_cad{
+    background-color: #7104f9;
+    text-align: right;
+    padding: 10px;
+}
+
+#top_cad a {
+    font-weight: 600;
+    color: #ffffff;      
+}
+
+#top_cad a:hover {
+    font-weight: 600;
+    color: #1C2022;   
+}
+
+
+#menufoods li{
+    width: 10%;
+    margin-top: 1%;
+    line-height: normal;
+    display: block;
+    font-size: 10%;
+    color: #888;
+}
